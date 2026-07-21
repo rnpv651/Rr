@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تفاصيل الساعة - المشرق</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-body: #f4f5f7;
+            --primary-red: #da3339;
+            --primary-orange: #f27c15;
+            --text-main: #222222;
+            --text-muted: #777777;
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: var(--bg-body);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        .app-container {
+            width: 100%;
+            max-width: 450px;
+            background-color: var(--bg-body);
+            min-height: 100vh;
+            position: relative;
+            padding-bottom: 30px;
+        }
+
+        /* الهيدر العلوي بخلفية حمراء */
+        .top-red-banner {
+            background-color: var(--primary-red);
+            height: 200px;
+            position: relative;
+        }
+
+        .header-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .badge-classic {
+            background-color: rgba(255, 255, 255, 0.25);
+            color: #fff;
+            padding: 4px 15px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .back-btn {
+            background-color: rgba(255, 255, 255, 0.25);
+            color: #fff;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        /* حاوية الصورة الأساسية */
+        .product-image-card {
+            background: #ffffff;
+            margin: -110px 20px 20px 20px;
+            border-radius: 16px;
+            padding: 30px 20px;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+        }
+
+        .product-image-card img {
+            width: 85%;
+            max-width: 250px;
+        }
+
+        /* كارد المعلومات */
+        .info-card {
+            background: #ffffff;
+            margin: 0 20px 20px;
+            border-radius: 16px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+        }
+
+        .badge-new {
+            background-color: #e6f4ea;
+            color: #34a853;
+            padding: 4px 20px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            display: inline-block;
+            margin-bottom: 12px;
+        }
+
+        .info-card h1 {
+            margin: 0;
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--text-main);
+        }
+
+        .info-card h2 {
+            margin: 5px 0 12px;
+            font-size: 14px;
+            font-weight: 700;
+            color: #d28c50;
+        }
+
+        .info-card p {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin: 0;
+            line-height: 1.7;
+            padding: 0 10px;
+        }
+
+        /* الأزرار المشتركة */
+        .btn {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            width: calc(100% - 40px);
+            margin: 0 20px 20px;
+            padding: 14px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-orange {
+            background-color: var(--primary-orange);
+            color: #fff;
+            box-shadow: 0 4px 10px rgba(242, 124, 21, 0.3);
+        }
+
+        .btn-red {
+            background-color: var(--primary-red);
+            color: #fff;
+            box-shadow: 0 4px 10px rgba(218, 51, 57, 0.3);
+            margin-bottom: 10px;
+        }
+
+        /* كارد المواصفات */
+        .specs-card {
+            background: #ffffff;
+            margin: 0 20px 20px;
+            border-radius: 16px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+        }
+
+        .specs-card h3 {
+            text-align: right;
+            margin: 0 0 15px 0;
+            font-size: 16px;
+            font-weight: 800;
+            color: var(--text-main);
+        }
+
+        .specs-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .spec-item {
+            background-color: #fafafa;
+            padding: 10px 12px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 600;
+            color: #555;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .spec-item i {
+            color: var(--primary-orange);
+            font-size: 14px;
+        }
+
+        /* صف المميزات (الأيقونات الثلاث) */
+        .features-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 12px;
+            margin: 0 20px 20px;
+        }
+
+        .feature-box {
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 20px 5px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+        }
+
+        .feature-box i {
+            font-size: 24px;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .icon-blue { color: #4da6e7; }
+        .icon-yellow { color: #f2b705; }
+        .icon-red { color: #e63946; }
+
+        .feature-box span {
+            display: block;
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--text-main);
+        }
+
+        /* النص السفلي */
+        .footer-note {
+            text-align: center;
+            font-size: 11px;
+            color: #a0a0a0;
+            margin: 0;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="app-container">
+        
+        <div class="top-red-banner">
+            <div class="header-nav">
+                <span class="badge-classic">كلاسيكية</span>
+                <a href="watch.html" class="back-btn"><i class="fa-solid fa-chevron-right"></i></a>
+            </div>
+        </div>
+
+        <div class="product-image-card">
+            <img id="product-img" src="https://d2xsxph8kpxj0f.cloudfront.net/310419663032591910/YnYojm97GeM6H7FjCPZTPD/watch_round_gold-GFnr2PRAKMRYKYLAywQyYM.webp" alt="ساعة المشرق">
+        </div>
+
+        <div class="info-card">
+            <span class="badge-new">جديد</span>
+            <h1 id="product-title">المشرق جولد</h1>
+            <h2>فخامة استثنائية</h2>
+            <p>ساعة ذكية فاخرة تجمع بين الكلاسيكية والتقنية الحديثة مع دعم الدفع اللاتلامسي.</p>
+        </div>
+
+        <a href="int.html" class="btn btn-orange">
+            احصل على ساعتك الآن
+            <i class="fa-regular fa-square-check"></i>
+        </a>
+
+        <div class="specs-card">
+            <h3>المواصفات</h3>
+            <div class="specs-grid">
+                <div class="spec-item">
+                    <i class="fa-regular fa-circle-check"></i>
+                    إطار معدني متين
+                </div>
+                <div class="spec-item">
+                    <i class="fa-regular fa-circle-check"></i>
+                    مقياس النبض
+                </div>
+                <div class="spec-item">
+                    <i class="fa-regular fa-circle-check"></i>
+                    دفع لاتلامسي NFC
+                </div>
+                <div class="spec-item">
+                    <i class="fa-regular fa-circle-check"></i>
+                    بطاقة Visa Signature
+                </div>
+            </div>
+        </div>
+
+        <div class="features-row">
+            <div class="feature-box">
+                <i class="fa-solid fa-shield-halved icon-blue"></i>
+                <span>ضمان أصلي</span>
+            </div>
+            <div class="feature-box">
+                <i class="fa-solid fa-truck-fast icon-yellow"></i>
+                <span>شحن للباب</span>
+            </div>
+            <div class="feature-box">
+                <i class="fa-solid fa-gift icon-red"></i>
+                <span>مجانية تماماً</span>
+            </div>
+        </div>
+
+        <a href="int.html" class="btn btn-red">
+            احصل على هذه الساعة مجاناً
+            <i class="fa-solid fa-gift"></i>
+        </a>
+
+        <p class="footer-note">تسجيل دخول واحد فقط لاستلام هديتك</p>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // جلب البيانات المحفوظة من المتصفح (من صفحة watch.html)
+            const savedWatchName = localStorage.getItem('selectedWatchName');
+            const savedWatchImage = localStorage.getItem('selectedWatchImage');
+
+            // إذا كان هناك بيانات محفوظة، قم بتحديث الصفحة بها
+            if (savedWatchName && savedWatchImage) {
+                const productImg = document.getElementById('product-img');
+                const productTitle = document.getElementById('product-title');
+
+                // تحديث مسار الصورة واسم الساعة
+                productImg.src = savedWatchImage;
+                productImg.alt = savedWatchName;
+                productTitle.innerText = "المشرق - " + savedWatchName;
+            }
+        });
+    </script>
+
+</body>
+</html>
